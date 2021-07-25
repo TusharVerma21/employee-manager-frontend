@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EmployeeService {
 
-  baseURL = environment.baseUrl;
+  private baseURL = environment.baseUrl;
 
   // private getURL1 = "http://localhost:8080/employees";
 
@@ -20,24 +20,24 @@ export class EmployeeService {
 
   getEmployeesList(): Observable<Employee[]>{
 
-    return this.httpClient.get<Employee[]>(`${this.baseURL}s`);
+    return this.httpClient.get<Employee[]>(`${this.baseURL}/employees`);
 
   }
 
   getEmployee(empId: number): Observable<Employee>{
-    return this.httpClient.get<Employee>(`${this.baseURL}/${empId}`);
+    return this.httpClient.get<Employee>(`${this.baseURL}/employee/${empId}`);
   }
 
   postEmployee(newEmployee: Employee): Observable<Employee>{
-    return this.httpClient.post<Employee>(`${this.baseURL}`, newEmployee);
+    return this.httpClient.post<Employee>(`${this.baseURL}/employee`, newEmployee);
   }
 
   putEmployee(empId: number, updatedEmployee: Employee): Observable<Employee>{
-    return this.httpClient.put<Employee>(`${this.baseURL}/${empId}`, updatedEmployee);
+    return this.httpClient.put<Employee>(`${this.baseURL}/employee/${empId}`, updatedEmployee);
   }
 
   deleteEmployee(empId: number): Observable<string>{
-    return this.httpClient.delete<string>(`${this.baseURL}/${empId}`);
+    return this.httpClient.delete<string>(`${this.baseURL}/employee/${empId}`);
   }
 
 }
